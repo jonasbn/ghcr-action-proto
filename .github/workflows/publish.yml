@@ -5,8 +5,8 @@ name: Publish to DockerHub and GitHub
 on:
   push:
     branches: main
-  tags:
-    - 'v*.*.*'
+    tags:
+      - 'v*.*.*'
 
 jobs:
   multi-registries:
