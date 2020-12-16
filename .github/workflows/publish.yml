@@ -1,3 +1,5 @@
+# REF: https://github.com/marketplace/actions/build-and-push-docker-images
+
 name: Publish to DockerHub and GitHub
 
 on:
@@ -43,10 +45,17 @@ jobs:
             jonasbn/ghcr-action-proto:1.0.0
             ghcr.io/jonasbn/ghcr-action-proto:latest
             ghcr.io/jonasbn/ghcr-action-proto:1.0.0
-      -
-        name: Update repository description on DockerHub
-        uses: peter-evans/dockerhub-description@v2
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-          repository: jonasbn/ghcr-action-proto
+      # The Action supports publishing the README to DockerHub
+      # REF: https://github.com/marketplace/actions/build-and-push-docker-images#update-dockerhub-repo-description
+      # Using a 3rd. party action extension
+      # REF: https://github.com/peter-evans/dockerhub-description
+      # Unfortunately this does not work due to the security model with DockerHub
+      # and the use of patch, please see issue below
+      # REF: https://github.com/peter-evans/dockerhub-description/issues/10
+      #-
+      #  name: Update repository description on DockerHub
+      #  uses: peter-evans/dockerhub-description@v2
+      #  with:
+      #    username: ${{ secrets.DOCKERHUB_USERNAME }}
+      #    password: ${{ secrets.DOCKERHUB_TOKEN }}
+      #    repository: jonasbn/ghcr-action-proto
