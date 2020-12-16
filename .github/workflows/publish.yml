@@ -50,12 +50,13 @@ jobs:
           context: .
           file: ./Dockerfile
           platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le,linux/s390x
-          push: true
-          tags: |
-            jonasbn/ghcr-action-proto:latest
-            jonasbn/ghcr-action-proto:${{ steps.docker_meta.outputs.tags }}
-            ghcr.io/jonasbn/ghcr-action-proto:latest
-            ghcr.io/jonasbn/ghcr-action-proto:${{ steps.docker_meta.outputs.tags }}
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.docker_meta.outputs.tags }}
+          #tags: |
+          #  jonasbn/ghcr-action-proto:latest
+          #  jonasbn/ghcr-action-proto:${{ steps.docker_meta.outputs.tags }}
+          #  ghcr.io/jonasbn/ghcr-action-proto:latest
+          #  ghcr.io/${{ steps.docker_meta.outputs.tags }}
       # The Action supports publishing the README to DockerHub
       # REF: https://github.com/marketplace/actions/build-and-push-docker-images#update-dockerhub-repo-description
       # Using a 3rd. party action extension
