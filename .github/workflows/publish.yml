@@ -5,6 +5,8 @@ name: Publish to DockerHub and GitHub
 on:
   push:
     branches: main
+  tags:
+    - 'v*.*.*'
 
 jobs:
   multi-registries:
@@ -42,9 +44,9 @@ jobs:
           push: true
           tags: |
             jonasbn/ghcr-action-proto:latest
-            jonasbn/ghcr-action-proto:1.0.0
+            jonasbn/ghcr-action-proto:${{ steps.docker_meta.outputs.tags }}
             ghcr.io/jonasbn/ghcr-action-proto:latest
-            ghcr.io/jonasbn/ghcr-action-proto:1.0.0
+            ghcr.io/jonasbn/ghcr-action-proto:${{ steps.docker_meta.outputs.tags }}
       # The Action supports publishing the README to DockerHub
       # REF: https://github.com/marketplace/actions/build-and-push-docker-images#update-dockerhub-repo-description
       # Using a 3rd. party action extension
