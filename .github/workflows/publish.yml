@@ -18,14 +18,14 @@ jobs:
         uses: actions/checkout@v2
       -
         # REF: https://github.com/crazy-max/ghaction-docker-meta
-        name: Docker meta
-        id: docker_meta
-        uses: crazy-max/ghaction-docker-meta@v1
-        with:
-          images: jonasbn/ghcr-action-proto
-          tag-semver: |
-            {{version}}
-      -
+        # name: Docker meta
+        # id: docker_meta
+        # uses: crazy-max/ghaction-docker-meta@v1
+        # with:
+        #  images: jonasbn/ghcr-action-proto
+        #  tag-semver: |
+        #    {{version}}
+      # -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       -
@@ -54,9 +54,9 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: |
             jonasbn/ghcr-action-proto:latest
-            jonasbn/ghcr-action-proto:${{ steps.docker_meta.outputs.version }}
+# jonasbn/ghcr-action-proto:${{ steps.docker_meta.outputs.version }}
             ghcr.io/jonasbn/ghcr-action-proto:latest
-            ghcr.io/${{ steps.docker_meta.outputs.version }}
+# ghcr.io/${{ steps.docker_meta.outputs.version }}
       # The Action supports publishing the README to DockerHub
       # REF: https://github.com/marketplace/actions/build-and-push-docker-images#update-dockerhub-repo-description
       # Using a 3rd. party action extension
