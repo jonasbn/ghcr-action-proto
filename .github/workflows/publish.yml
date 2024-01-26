@@ -45,7 +45,7 @@ jobs:
             jonasbn/ghcr-action-proto:latest
             ghcr.io/jonasbn/ghcr-action-proto:latest
       - name: Docker Hub Description
-        uses: peter-evans/dockerhub-description@v3
+        uses: peter-evans/dockerhub-description@v4
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
